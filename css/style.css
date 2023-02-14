@@ -1,16 +1,51 @@
 body {
     background-image: url(../img/background.svg);
-}
-
-#main-container {
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-top: 100px;
 }
 
-.calc-border {
+.main-container {
+    display: flex;
+    flex-direction: column;
+    margin-top: 100px;
     height: 800px;
     width: 500px;
-    background-color: blue;
+    background-color: #2f4f4f;
+    border: 15px outset #546c6c;
+    border-radius: 5px;
+    
+}
+
+.header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 25px 50px;
+}
+
+.logo {
+    font-family: 'Yellowtail', cursive;
+    font-size: 30px;
+    color: #ffd700;
+    text-shadow: 3px 1.25px #000;
+}
+
+.screen {
+    align-self: center;
+    display: flex;
+    align-items: flex-end;
+    justify-content: flex-end;
+    margin-top: 20px;
+    width: 400px;
+    height: 115px;
+    padding-right: 10px;
+    background: #595959;
+    text-align: right;
+    line-height: 80px;
+    font-size: 28px;
+    font-family: 'Press Start 2P', cursive;
+    border: 3px inset #546c6c;
+    border-radius: 5px;
+    word-wrap: break-word;
 }
