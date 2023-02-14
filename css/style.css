@@ -1,0 +1,16 @@
+body {
+    background-image: url(../img/background.svg);
+}
+
+#main-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 100px;
+}
+
+.calc-border {
+    height: 800px;
+    width: 500px;
+    background-color: blue;
+}
