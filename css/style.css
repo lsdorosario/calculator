@@ -1,3 +1,10 @@
+:root {
+    --main-container-height: 700px;
+    --main-container-width: 500px;
+    --btn-container-width: 415px;
+    --btn-container-height: 400px;
+}
+
 body {
     background-image: url(../img/background.svg);
     display: flex;
@@ -9,8 +16,8 @@ body {
     display: flex;
     flex-direction: column;
     margin-top: 100px;
-    height: 800px;
-    width: 500px;
+    height: var(--main-container-height);
+    width: var(--main-container-width);
     background-color: #2f4f4f;
     border: 15px outset #546c6c;
     border-radius: 5px;
@@ -48,4 +55,43 @@ body {
     border: 3px inset #546c6c;
     border-radius: 5px;
     word-wrap: break-word;
+}
+
+.btn-container, 
+.btn-numbers, 
+.btn-operations {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+}
+
+.btn-numbers, 
+.btn-operations {
+    border: 0px solid red;
+    gap: 10px;
+}
+
+.btn-container {
+    align-self: center;
+    align-items: center;
+    margin-top: 50px;
+    width: var(--btn-container-width);
+    height: var(--btn-container-height);
+}
+
+.btn-numbers {
+    width: calc(var(--btn-container-width) - 40%);
+}
+
+.btn-operations {
+    width: calc(var(--btn-container-width) - 60%);
+}
+
+.btn {
+    border: 5px solid white;
+    width: calc((var(--btn-container-width) / 5.75));
+    height: calc( (var(--btn-container-height) / 4.75));
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
