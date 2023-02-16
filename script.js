@@ -1,3 +1,4 @@
+// Uses basic arithmetic functions to calculate
 function operate(operator, a, b) {
     switch (operator) {
         case "+" :

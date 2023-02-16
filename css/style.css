@@ -38,7 +38,7 @@ body {
     text-shadow: 3px 1.25px #000;
 }
 
-.screen {
+#screen {
     align-self: center;
     display: flex;
     align-items: flex-end;
@@ -107,4 +107,22 @@ body {
 .btn:active {
     background-color: #687a7a;
     transform: translateY(2px);
+}
+
+.btn-equal {
+    background-color: #8a0505;
+    color: #FFF;
+}
+
+.btn-equal:hover {
+    background-color: #700404;
+}
+
+.btn-clear {
+    background-color: #2a58bc;
+    color: #FFF;
+}
+
+.btn-clear:hover {
+    background-color: #234794;
 }
