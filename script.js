@@ -1,13 +1,16 @@
 populatesDisplay();
-// Creates button array and adds event listener
-
+// Creates operand nodelist and adds event listener
 function populatesDisplay() {
-    const BUTTONS = document.querySelectorAll(".btn");
-    BUTTONS.forEach(button => {
+    const OPERANDS = document.querySelectorAll(".operand");
+    OPERANDS.forEach(button => {
         button.addEventListener("click", () => {
             button.onclick(addToDisplay(button.value));
         });
     });
+}
+
+function clearDisplay() {
+    document.querySelector("#num-display").textContent = "";
 }
 
 function addToDisplay(btnValue) {
