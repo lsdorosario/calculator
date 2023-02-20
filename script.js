@@ -4,7 +4,7 @@ function populatesDisplay() {
     const OPERANDS = document.querySelectorAll(".operand");
     OPERANDS.forEach(button => {
         button.addEventListener("click", () => {
-            button.onclick(addToDisplay(button.value));
+            addToDisplay(button.value);
         });
     });
 }
