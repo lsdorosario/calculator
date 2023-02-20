@@ -1,3 +1,20 @@
+populatesDisplay();
+// Creates button array and adds event listener
+
+function populatesDisplay() {
+    const BUTTONS = document.querySelectorAll(".btn");
+    BUTTONS.forEach(button => {
+        button.addEventListener("click", () => {
+            button.onclick(addToDisplay(button.value));
+        });
+    });
+}
+
+function addToDisplay(btnValue) {
+    const NUM_DISPLAY = document.querySelector("#num-display");
+    NUM_DISPLAY.innerText = NUM_DISPLAY.innerText += btnValue;
+}
+
 // Uses basic arithmetic functions to calculate
 function operate(operator, a, b) {
     switch (operator) {
