@@ -1,48 +1,43 @@
-// Defines number display
+
+// Defines number display and number/operator arrays
 let numberDisplay = document.querySelector("#num-display");
+const CLEAR_BTN = document.querySelector(".btn-clear");
+const NUM_ARRAY = document.querySelectorAll(".numbers");
+const OPS_ARRAY = document.querySelectorAll(".operators");
 
 // Creates variables for operand and result
 let operand1 = 0;
 let operand2 = 0;
+let currentOperator = "";
 let result = 0;
 
-// Calculator 
-populatesDisplay();
-// opTest();
 
-// Operation test
-// function opTest() {
-//     const OPS_ARRAY = document.querySelectorAll(".operators");
-//     OPS_ARRAY.forEach(button => {
-//         button.addEventListener("click", () => {
-//             clearDisplay();
+// Adds event listener for numbers and operators
+NUM_ARRAY.forEach(button => button.addEventListener("click", () => addToDisplay(button.value)));
+OPS_ARRAY.forEach(button => button.addEventListener("click", () => chooseOperator(button.value)));
 
-//             result = operate(button.value, operand1, 2);
-//             numberDisplay.textContent = result;
-//         });
-//     });
-// }
-
-// Creates operand nodelist and adds event listener
-function populatesDisplay() {
-    const NUM_ARRAY = document.querySelectorAll(".numbers");
-    NUM_ARRAY.forEach(button => {
-        button.addEventListener("click", () => {
-            addToDisplay(button.value);
-            return parseInt(numberDisplay.innerText);
-        });
-    });
-}
-
+// Adds user input to screen
 function addToDisplay(btnValue) {
     numberDisplay.innerText = numberDisplay.innerText += btnValue;
+}
+
+function chooseOperator(operator){
+    currentOperator = operator;
 }
 
 function clearDisplay() {
     numberDisplay.textContent = "";
 }
 
-// Uses basic arithmetic functions to calculate
+// Resets display and variables for operations
+function clearAll() {
+    clearDisplay();
+    operand1 = 0;
+    operand2 = 0;
+    currentOperator = "";
+    result = 0;
+}
+
 function operate(operator, a, b) {
     switch (operator) {
         case "add" :
