@@ -1,8 +1,15 @@
 populatesDisplay();
+
+// Creates variables for number display, operands and result
+let numberDisplay = document.querySelector("#num-display");
+let operand1 = 0;
+let operand2 = 0;
+let result = 0;
+
 // Creates operand nodelist and adds event listener
 function populatesDisplay() {
-    const OPERANDS = document.querySelectorAll(".operand");
-    OPERANDS.forEach(button => {
+    const NUM_ARRAY = document.querySelectorAll(".numbers");
+    NUM_ARRAY.forEach(button => {
         button.addEventListener("click", () => {
             addToDisplay(button.value);
         });
@@ -10,12 +17,11 @@ function populatesDisplay() {
 }
 
 function clearDisplay() {
-    document.querySelector("#num-display").textContent = "";
+    numberDisplay.textContent = "";
 }
 
 function addToDisplay(btnValue) {
-    const NUM_DISPLAY = document.querySelector("#num-display");
-    NUM_DISPLAY.innerText = NUM_DISPLAY.innerText += btnValue;
+    numberDisplay.innerText = numberDisplay.innerText += btnValue;
 }
 
 // Uses basic arithmetic functions to calculate

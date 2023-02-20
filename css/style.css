@@ -58,15 +58,15 @@ body {
 }
 
 .btn-container, 
-.btn-numbers, 
-.btn-operations {
+.num-container, 
+.ops-container {
     display: flex;
     flex-flow: row wrap;
     justify-content: center;
 }
 
-.btn-numbers, 
-.btn-operations {
+.num-container, 
+.ops-container {
     border: 0px solid red;
     gap: 10px;
 }
@@ -79,11 +79,11 @@ body {
     height: var(--btn-container-height);
 }
 
-.btn-numbers {
+.num-container {
     width: calc(var(--btn-container-width) - 40%);
 }
 
-.btn-operations {
+.ops-container {
     width: calc(var(--btn-container-width) - 60%);
 }
 
