@@ -49,12 +49,17 @@ body {
     padding-right: 10px;
     background: #595959;
     text-align: right;
-    line-height: 80px;
-    font-size: 28px;
+    line-height: 50px;
+    font-size: 24px;
     font-family: 'Press Start 2P', cursive;
     border: 3px inset #546c6c;
     border-radius: 5px;
     word-wrap: break-word;
+}
+
+#num-display {
+    max-width: 400px;
+    
 }
 
 .btn-container, 
