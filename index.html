@@ -19,7 +19,8 @@
             <img src="./img/solar-panel.png" alt="A solar panel for the calculator">
         </div>
         <div id="screen">
-            <p id="num-display"></p>
+            <p id="last-operation"></p>
+            <p id="current-operation"></p>
         </div>
         <div class="btn-container">
             <div class="num-container">
@@ -34,17 +35,17 @@
                 <button value="3" class="btn numbers">3</button>
                 <button value="0" class="btn numbers">0</button>
                 <button value="." class="btn numbers">.</button>
-                <button value="delete" class="btn btn-delete" onclick="deleteNum()">DEL</button>
+                <button value="delete" class="btn btn-delete">DEL</button>
             </div>
             <div class="ops-container">
-                <button value="pow" class="btn operators">𝑥²</button>
-                <button value="clear" class="btn btn-clear" onclick="clearAll()">C</button>
-                <button value="add" class="btn operators">+</button>
-                <button value="subtract" class="btn operators">-</button>
-                <button value="multiply" class="btn operators">x</button>
-                <button value="divide" class="btn operators">%</button>
-                <button value="sqrt" class="btn operators">√</button>
-                <button value="equal" class="btn btn-equal">=</button>
+                <button value="²" class="btn operators">𝑥²</button>
+                <button value="clear" class="btn btn-clear">C</button>
+                <button value="+" class="btn operators">+</button>
+                <button value="-" class="btn operators">-</button>
+                <button value="×" class="btn operators">x</button>
+                <button value="%" class="btn operators">%</button>
+                <button value="√" class="btn operators">√</button>
+                <button value="=" class="btn btn-equals">=</button>
             </div>
         </div>
     </div>

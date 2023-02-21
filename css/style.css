@@ -41,7 +41,7 @@ body {
 #screen {
     align-self: center;
     display: flex;
-    align-items: flex-end;
+    align-items: flex-start;
     justify-content: flex-end;
     margin-top: 20px;
     width: 400px;
@@ -50,16 +50,24 @@ body {
     background: #595959;
     text-align: right;
     line-height: 50px;
-    font-size: 24px;
     font-family: 'Press Start 2P', cursive;
     border: 3px inset #546c6c;
     border-radius: 5px;
     word-wrap: break-word;
 }
 
-#num-display {
+#last-operation, 
+#current-operation {
     max-width: 400px;
-    
+}
+
+#last-operation {
+    font-size: 16px;
+}
+
+#current-operation {
+    align-self: flex-end;
+    font-size: 26px;
 }
 
 .btn-container, 
@@ -114,7 +122,7 @@ body {
     transform: translateY(2px);
 }
 
-.btn-equal {
+.btn-equals {
     background-color: #8a0505;
     color: #FFF;
 }

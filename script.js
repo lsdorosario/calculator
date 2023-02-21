@@ -1,40 +1,57 @@
-// Defines number display and number/operator arrays
-let numberDisplay = document.querySelector("#num-display");
+// Creates variables for HTML elements
+let lastOperation = document.querySelector("#last-operation");
+let currentOperation = document.querySelector("#current-operation");
 const CLEAR_BTN = document.querySelector(".btn-clear");
+const EQUALS_BTN = document.querySelector(".btn-equals");
+const DEL_BTN = document.querySelector(".btn-delete");
 const NUM_ARRAY = document.querySelectorAll(".numbers");
 const OPS_ARRAY = document.querySelectorAll(".operators");
+let screenReset = false;
 
 // Creates global variables and sets them to initial value
 let firstOperand = 0;
 let secondOperand = 0;
-let currentOperator = "";
-let operation = null;
-let result = 0;
-numberDisplay.textContent = 0;
+let operator = null;
+currentOperation.textContent = 0;
 
 
-// Adds event listener for numbers and operators
+// Adds event listeners for numbers and operators
 NUM_ARRAY.forEach(button => button.addEventListener("click", () => addToDisplay(button.value)));
 OPS_ARRAY.forEach(button => button.addEventListener("click", () => chooseOperator(button.value)));
 
-function doTheMath() {
-    
-}
+// Adds event listener for "clear", "equals" and "delete" 
+CLEAR_BTN.addEventListener("click", clearAll);
+EQUALS_BTN.addEventListener("click", doTheMath);
+DEL_BTN.addEventListener("click", deleteNum);
 
-function chooseOperator(operator) {
 
-}
+// function doTheMath() {
+//     if (operator === null || screenReset) return; // Returns if no operator
+//     secondOperand.textContent = parseInt(currentOperation.textContent);
+//     currentOperation.textContent = operate(operator, firstOperand, secondOperand);
+//     lastOperation.textContent = `${firstOperand} ${currentOperation} ${secondOperand} =`;
+//     operator = null;
+// }
+
+// function chooseOperator(calc) {
+//     if (currentOperation !== null) doTheMath(); // Checks for operator
+//     firstOperand = parseInt(currentOperation.textContent); // Assigns current text to first operand
+//     operator = calc; // Assigns current operator
+//     lastOperation.textContent = `${firstOperand} ${operator}`; // Moves to top screen
+//     screenReset = true;
+// }
 
 // Adds user input to screen
 function addToDisplay(btnValue) {
-    if (numberDisplay.innerText == 0) {
+    if (currentOperation.textContent == 0 || screenReset) {
         clearDisplay();
     }
-    numberDisplay.innerText = numberDisplay.innerText += btnValue;
+    currentOperation.textContent = currentOperation.textContent += btnValue;
 }
 
 function clearDisplay() {
-    numberDisplay.textContent = "";
+    currentOperation.textContent = "";
+    screenReset = false;
 }
 
 // Resets display and variables for operations
@@ -42,34 +59,34 @@ function clearAll() {
     clearDisplay();
     firstOperand = 0;
     secondOperand = 0;
-    currentOperator = "";
+    operator = "";
     operation = null;
     result = 0;
-    numberDisplay.textContent = 0;
+    currentOperation.textContent = 0;
 }
 
 function deleteNum() {
-    numberDisplay.innerText = numberDisplay.innerText.toString().slice(0, -1);
+    currentOperation.textContent = currentOperation.textContent.toString().slice(0, -1);
 }
 
 function operate(operator, a, b) {
     switch (operator) {
-        case "add" :
+        case "+" :
             return add(a, b);
-        case "subtract" :
+        case "-" :
             return subtract(a, b);
-        case "multiply" :
+        case "×" :
             return multiply(a, b);
-        case "divide" :
+        case "%" :
             if (b == 0) {
                 return "ERROR";
             } else {
                 return divide(a, b);
             }
-        case "pow" :
-            return Math.pow(a, 2);
-        case "sqrt" :
-            return Math.sqrt(a);
+        case "²" :
+            return ;
+        case "√" :
+            return Math.sqrt(a, b = 1);
         default: 
             return null;
     }
@@ -87,4 +104,10 @@ function multiply(a, b) {
 }
 function divide(a, b) {
     return a / b;
+}
+function squared(a) {
+    return Math.pow(a, 2);
+}
+function sqrt(a) {
+    return Math.sqrt(a);
 }
