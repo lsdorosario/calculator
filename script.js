@@ -17,15 +17,13 @@ numberDisplay.textContent = 0;
 NUM_ARRAY.forEach(button => button.addEventListener("click", () => addToDisplay(button.value)));
 OPS_ARRAY.forEach(button => button.addEventListener("click", () => chooseOperator(button.value)));
 
-// function doTheMath() {
+function doTheMath() {
     
-// }
+}
 
-// function chooseOperator(operator) {
-//     currentOperator = parseInt(numberDisplay.innerText);
-//     operation = currentOperator;
-    
-// }
+function chooseOperator(operator) {
+
+}
 
 // Adds user input to screen
 function addToDisplay(btnValue) {
@@ -68,6 +66,10 @@ function operate(operator, a, b) {
             } else {
                 return divide(a, b);
             }
+        case "pow" :
+            return Math.pow(a, 2);
+        case "sqrt" :
+            return Math.sqrt(a);
         default: 
             return null;
     }
