@@ -43,23 +43,23 @@ function chooseOperator(calc) {
 // Adds user input to screen
 function addToDisplay(btnValue) {
     if (currentOperation.textContent == 0 || screenReset) {
-        clearDisplay();
+        clearCurrentDisplay();
     }
     currentOperation.textContent = currentOperation.textContent += btnValue;
 }
 
-function clearDisplay() {
+function clearCurrentDisplay() {
     currentOperation.textContent = "";
     screenReset = false;
 }
 
 // Resets display and variables for operations
 function clearAll() {
-    clearDisplay();
     firstOperand = 0;
     secondOperand = 0;
     operator = null;
     result = 0;
+    lastOperation.textContent = "";
     currentOperation.textContent = 0;
 }
 
@@ -67,7 +67,7 @@ function deleteNum() {
     currentOperation.textContent = currentOperation.textContent.toString().slice(0, -1);
 }
 
-function operate(operator, a, b = 1) {
+function operate(operator, a, b) {
     a = Number(a);
     b = Number(b);
     switch (operator) {
@@ -83,10 +83,10 @@ function operate(operator, a, b = 1) {
             } else {
                 return divide(a, b);
             }
-        case "²" :
+        case "^" :
             return Math.pow(a, b);
         case "√" :
-            return Math.sqrt(a, b = 1);
+            return Math.sqrt(a);
         default: 
             return null;
     }
@@ -105,7 +105,7 @@ function multiply(a, b) {
 function divide(a, b) {
     return a / b;
 }
-function squared(a, b = 2) {
+function pow(a, b) {
     return Math.pow(a, b);
 }
 function sqrt(a) {
