@@ -4,6 +4,7 @@ let currentOperation = document.getElementById("current-operation");
 const CLEAR_BTN = document.querySelector(".btn-clear");
 const EQUALS_BTN = document.querySelector(".btn-equals");
 const DEL_BTN = document.querySelector(".btn-delete");
+const POINT_BTN = document.querySelector("#btn-point");
 const NUM_ARRAY = document.querySelectorAll(".numbers");
 const OPS_ARRAY = document.querySelectorAll(".operators");
 
@@ -22,6 +23,7 @@ OPS_ARRAY.forEach((button) => button.addEventListener("click", () => chooseOpera
 CLEAR_BTN.addEventListener("click", clearAll);
 EQUALS_BTN.addEventListener("click", doTheMath);
 DEL_BTN.addEventListener("click", deleteNum);
+POINT_BTN.addEventListener("click", addFloatingPoint);
 
 
 function doTheMath() {
@@ -46,7 +48,6 @@ function chooseOperator(calc) {
         lastOperation.textContent = `${firstOperand} ${operator}`; // Moves to top screen
         screenReset = true; 
     }
-
 }
 
 // Adds user input to screen
@@ -74,6 +75,15 @@ function clearAll() {
 
 function deleteNum() {
     currentOperation.textContent = currentOperation.textContent.toString().slice(0, -1);
+}
+
+function addFloatingPoint() {
+    if (screenReset) clearCurrentDisplay();
+    if (currentOperation.textContent === "") {
+        currentOperation.textContent = "0";
+    }
+    if (currentOperation.textContent.includes(".")) return;
+    currentOperation.textContent += "."
 }
 
 function operate(operator, a, b) {
