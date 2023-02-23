@@ -19,7 +19,10 @@ let screenReset = false;
 NUM_ARRAY.forEach((button) => button.addEventListener("click", () => addToDisplay(button.value)));
 OPS_ARRAY.forEach((button) => button.addEventListener("click", () => chooseOperator(button.value)));
 
-// Adds event listener for "clear", "equals" and "delete" 
+// Adds event listener for keyboard input
+window.addEventListener("keydown", checkKeyInput);
+
+// Adds event listeners for "clear", "equals" and "delete" 
 CLEAR_BTN.addEventListener("click", clearAll);
 EQUALS_BTN.addEventListener("click", doTheMath);
 DEL_BTN.addEventListener("click", deleteNum);
@@ -29,7 +32,7 @@ POINT_BTN.addEventListener("click", addFloatingPoint);
 function doTheMath() {
     if (operator === null || screenReset) return; // Returns if no operator or if screen is reset
     secondOperand = currentOperation.textContent; // Assigns current text to second operand
-    currentOperation.textContent = operate(operator, firstOperand, secondOperand); // Does the math and displays result
+    currentOperation.textContent = roundValue(operate(operator, firstOperand, secondOperand)); // Does the math and displays result
     lastOperation.textContent = `${firstOperand} ${operator} ${secondOperand} =`; // Displays last operation
     operator = null; // Resets operator
 }
@@ -41,7 +44,7 @@ function chooseOperator(calc) {
 
     if (operator == "√") { // Squared root
         lastOperation.textContent = `sqrt(${firstOperand}) =`;
-        currentOperation.textContent = roundValue(sqrt(firstOperand)); // Rounds value to 2 decimal places
+        currentOperation.textContent = roundValue(sqrt(firstOperand));
         secondOperand = currentOperation.textContent;
         screenReset = true; // Resets screen
     } else {
@@ -56,9 +59,7 @@ function roundValue(value) {
 
 // Adds user input to screen
 function addToDisplay(btnValue) {
-    if (currentOperation.textContent == 0 || screenReset) {
-        clearCurrentDisplay();
-    }
+    if (currentOperation.textContent == 0 || screenReset) clearCurrentDisplay();
     currentOperation.textContent = currentOperation.textContent += btnValue;
 }
 
@@ -100,7 +101,7 @@ function operate(operator, a, b) {
             return subtract(a, b);
         case "×" :
             return multiply(a, b);
-        case "%" :
+        case "÷" :
             if (b == 0) {
                 return "ERROR!";
             } else {
@@ -133,4 +134,24 @@ function pow(a, b) {
 }
 function sqrt(a) {
     return Math.sqrt(a);
+}
+
+// Adds keyboard support
+function checkKeyInput(event) {
+    if (event.key >= 0 && event.key <= 9) addToDisplay(event.key);
+    if (event.key === ".") addFloatingPoint();
+    if (event.key === "=" || event.key === "Enter") doTheMath();
+    if (event.key === "Backspace") deleteNum();
+    if (event.key === "Escape") clearAll();
+    if (event.key === "+" || event.key === "-" || event.key === "*" || event.key === "/") {
+        chooseOperator(convertKey(event.key));
+    }
+}
+
+function convertKey(input) {
+    if (input === "/") return "÷";
+    if (input === "*") return "×";
+    if (input === "-") return "-";
+    if (input === "+") return "+";
+    if (input === "^") return "^";
 }
