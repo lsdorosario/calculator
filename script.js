@@ -1,6 +1,6 @@
 // Creates variables for HTML elements
-let lastOperation = document.querySelector("#last-operation");
-let currentOperation = document.querySelector("#current-operation");
+let lastOperation = document.getElementById("last-operation");
+let currentOperation = document.getElementById("current-operation");
 const CLEAR_BTN = document.querySelector(".btn-clear");
 const EQUALS_BTN = document.querySelector(".btn-equals");
 const DEL_BTN = document.querySelector(".btn-delete");
@@ -24,21 +24,21 @@ EQUALS_BTN.addEventListener("click", doTheMath);
 DEL_BTN.addEventListener("click", deleteNum);
 
 
-// function doTheMath() {
-//     if (operator === null || screenReset) return; // Returns if no operator
-//     secondOperand.textContent = currentOperation.textContent;
-//     currentOperation.textContent = operate(operator, firstOperand, secondOperand);
-//     lastOperation.textContent = `${firstOperand} ${currentOperation} ${secondOperand} =`;
-//     operator = null;
-// }
+function doTheMath() {
+    if (operator === null || screenReset) return; // Returns if no operator or screen is reset
+    secondOperand = currentOperation.textContent; // Assigns current text to second operand
+    currentOperation.textContent = operate(operator, firstOperand, secondOperand); // Does the math
+    lastOperation.textContent = `${firstOperand} ${operator} ${secondOperand} =`; // Displays the result
+    operator = null; // Resets operator
+}
 
-// function chooseOperator(calc) {
-//     if (currentOperation !== null) doTheMath(); // Checks for operator
-//     firstOperand = currentOperation.textContent; // Assigns current text to first operand
-//     operator = calc; // Assigns current operator
-//     lastOperation.textContent = `${firstOperand} ${operator}`; // Moves to top screen
-//     screenReset = true;
-// }
+function chooseOperator(calc) {
+    if (currentOperation !== null) doTheMath(); // Checks for operator
+    firstOperand = currentOperation.textContent; // Assigns current text to first operand
+    operator = calc; // Assigns current operator
+    lastOperation.textContent = `${firstOperand} ${operator}`; // Moves to top screen
+    screenReset = true; // Resets screen
+}
 
 // Adds user input to screen
 function addToDisplay(btnValue) {
@@ -67,7 +67,7 @@ function deleteNum() {
     currentOperation.textContent = currentOperation.textContent.toString().slice(0, -1);
 }
 
-function operate(operator, a, b) {
+function operate(operator, a, b = 1) {
     a = Number(a);
     b = Number(b);
     switch (operator) {
@@ -84,7 +84,7 @@ function operate(operator, a, b) {
                 return divide(a, b);
             }
         case "²" :
-            return ;
+            return Math.pow(a, b);
         case "√" :
             return Math.sqrt(a, b = 1);
         default: 
@@ -105,8 +105,8 @@ function multiply(a, b) {
 function divide(a, b) {
     return a / b;
 }
-function squared(a) {
-    return Math.pow(a, 2);
+function squared(a, b = 2) {
+    return Math.pow(a, b);
 }
 function sqrt(a) {
     return Math.sqrt(a);
