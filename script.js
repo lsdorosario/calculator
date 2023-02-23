@@ -41,13 +41,17 @@ function chooseOperator(calc) {
 
     if (operator == "√") { // Squared root
         lastOperation.textContent = `sqrt(${firstOperand}) =`;
-        currentOperation.textContent = (Math.round(sqrt(firstOperand) * 100) / 100).toFixed(2); // Rounds value to 2 decimal places
+        currentOperation.textContent = roundValue(sqrt(firstOperand)); // Rounds value to 2 decimal places
         secondOperand = currentOperation.textContent;
         screenReset = true; // Resets screen
     } else {
         lastOperation.textContent = `${firstOperand} ${operator}`; // Moves to top screen
         screenReset = true; 
     }
+}
+
+function roundValue(value) {
+    return Math.round(value * 10000) / 10000;
 }
 
 // Adds user input to screen
