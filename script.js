@@ -25,10 +25,10 @@ DEL_BTN.addEventListener("click", deleteNum);
 
 
 function doTheMath() {
-    if (operator === null || screenReset) return; // Returns if no operator or screen is reset
+    if (operator === null || screenReset) return; // Returns if no operator or if screen is reset
     secondOperand = currentOperation.textContent; // Assigns current text to second operand
-    currentOperation.textContent = operate(operator, firstOperand, secondOperand); // Does the math
-    lastOperation.textContent = `${firstOperand} ${operator} ${secondOperand} =`; // Displays the result
+    currentOperation.textContent = operate(operator, firstOperand, secondOperand); // Does the math and displays result
+    lastOperation.textContent = `${firstOperand} ${operator} ${secondOperand} =`; // Displays last operation
     operator = null; // Resets operator
 }
 
@@ -36,8 +36,17 @@ function chooseOperator(calc) {
     if (currentOperation !== null) doTheMath(); // Checks for operator
     firstOperand = currentOperation.textContent; // Assigns current text to first operand
     operator = calc; // Assigns current operator
-    lastOperation.textContent = `${firstOperand} ${operator}`; // Moves to top screen
-    screenReset = true; // Resets screen
+
+    if (operator == "√") { // Squared root
+        lastOperation.textContent = `sqrt(${firstOperand}) =`;
+        currentOperation.textContent = (Math.round(sqrt(firstOperand) * 100) / 100).toFixed(2); // Rounds value to 2 decimal places
+        secondOperand = currentOperation.textContent;
+        screenReset = true; // Resets screen
+    } else {
+        lastOperation.textContent = `${firstOperand} ${operator}`; // Moves to top screen
+        screenReset = true; 
+    }
+
 }
 
 // Adds user input to screen
@@ -79,7 +88,7 @@ function operate(operator, a, b) {
             return multiply(a, b);
         case "%" :
             if (b == 0) {
-                return "ERROR";
+                return "ERROR!";
             } else {
                 return divide(a, b);
             }
