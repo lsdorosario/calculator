@@ -6,18 +6,17 @@ const EQUALS_BTN = document.querySelector(".btn-equals");
 const DEL_BTN = document.querySelector(".btn-delete");
 const NUM_ARRAY = document.querySelectorAll(".numbers");
 const OPS_ARRAY = document.querySelectorAll(".operators");
-let screenReset = false;
 
 // Creates global variables and sets them to initial value
 let firstOperand = 0;
 let secondOperand = 0;
 let operator = null;
 currentOperation.textContent = 0;
-
+let screenReset = false;
 
 // Adds event listeners for numbers and operators
-NUM_ARRAY.forEach(button => button.addEventListener("click", () => addToDisplay(button.value)));
-OPS_ARRAY.forEach(button => button.addEventListener("click", () => chooseOperator(button.value)));
+NUM_ARRAY.forEach((button) => button.addEventListener("click", () => addToDisplay(button.value)));
+OPS_ARRAY.forEach((button) => button.addEventListener("click", () => chooseOperator(button.value)));
 
 // Adds event listener for "clear", "equals" and "delete" 
 CLEAR_BTN.addEventListener("click", clearAll);
@@ -27,7 +26,7 @@ DEL_BTN.addEventListener("click", deleteNum);
 
 // function doTheMath() {
 //     if (operator === null || screenReset) return; // Returns if no operator
-//     secondOperand.textContent = parseInt(currentOperation.textContent);
+//     secondOperand.textContent = currentOperation.textContent;
 //     currentOperation.textContent = operate(operator, firstOperand, secondOperand);
 //     lastOperation.textContent = `${firstOperand} ${currentOperation} ${secondOperand} =`;
 //     operator = null;
@@ -35,7 +34,7 @@ DEL_BTN.addEventListener("click", deleteNum);
 
 // function chooseOperator(calc) {
 //     if (currentOperation !== null) doTheMath(); // Checks for operator
-//     firstOperand = parseInt(currentOperation.textContent); // Assigns current text to first operand
+//     firstOperand = currentOperation.textContent; // Assigns current text to first operand
 //     operator = calc; // Assigns current operator
 //     lastOperation.textContent = `${firstOperand} ${operator}`; // Moves to top screen
 //     screenReset = true;
@@ -59,8 +58,7 @@ function clearAll() {
     clearDisplay();
     firstOperand = 0;
     secondOperand = 0;
-    operator = "";
-    operation = null;
+    operator = null;
     result = 0;
     currentOperation.textContent = 0;
 }
@@ -70,6 +68,8 @@ function deleteNum() {
 }
 
 function operate(operator, a, b) {
+    a = Number(a);
+    b = Number(b);
     switch (operator) {
         case "+" :
             return add(a, b);
